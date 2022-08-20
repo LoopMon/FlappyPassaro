@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    margin-top: 30px;
+    height: 50%;
+}
+
+.container .titulo{
+    padding: 10px;
+}
+
+.container .titulo h2{
+    font-size: 1.8rem;
+    font-family:Verdana, Tahoma, sans-serif;
+    background-color: blueviolet;
+    color: #ff0;
+    padding: 5px;
+    text-align: center;
+}
+
+#cnv{
+    max-width: 400px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+@media(min-width: 600px){
+    #cnv{
+        max-width: 700px;
+    }
+}
