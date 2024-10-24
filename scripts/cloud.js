@@ -15,6 +15,7 @@ function Cloud(cenario){
     }
 
     this.move = () => {
+        // taxa de atualização de frame
         if(this.frame >= 348){
             this.frame = 0
         }
