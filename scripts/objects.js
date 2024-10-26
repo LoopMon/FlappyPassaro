@@ -6,13 +6,15 @@ function Bird(img) {
   this.x = 30;
   this.gravidade = 0.2;
   this.speed = 0;
-  this.forçaPulo = -6;
+  this.forçaPulo = -5;
   this.cor = img;
 
   this.draw = (ctx) => {
+    /* TEXTO DO SCORE */
     ctx.fillStyle = "#f00";
     ctx.font = "50px Arial";
     ctx.fillText(this.score, cnv.width - 70, 50);
+    /* OBJETO BIRD */
     ctx.drawImage(this.cor, 0, this.srcY * 32, 32, 32, this.x, this.y, 32, 32);
     /* TELA DE INICIO */
     if (this.estado == estadoJogo.inicio) {
@@ -23,9 +25,16 @@ function Bird(img) {
         tela.width,
         tela.height,
         cnv.width / 2 - 100,
-        cnv.height / 2 - 50,
+        cnv.height / 2 - 100,
         200,
         100
+      );
+      ctx.fillStyle = "#f0f";
+      ctx.font = "25px Arial";
+      ctx.fillText(
+        "Pressione (W) para Começar.",
+        cnv.width / 2 - 155,
+        cnv.height / 2 + 40
       );
       ctx.fillStyle = "#00f";
       ctx.font = "25px Arial";
@@ -98,8 +107,8 @@ function Bird(img) {
       this.estado = estadoJogo.perdeu;
       this.forçaPulo = 0;
       cano.speed = 0;
-      media.pause();
-      perdeu.play();
+      media.pause(); // audio
+      perdeu.play(); // audio
     } else if (
       this.x + 30 > cano.x &&
       this.x < cano.x + 35 &&
@@ -122,11 +131,7 @@ function Bird(img) {
     this.score = 0;
     this.x = 30;
     this.y = cnv.height / 2 - 32;
-    cano1.x = cnv.width + cano1.deslocX;
-    cano2.x = cnv.width + cano2.deslocX;
-    cano1.speed = 3;
-    cano2.speed = 3;
-    this.forçaPulo = -6;
+    this.forçaPulo = -5;
   };
 }
 
@@ -137,8 +142,8 @@ function Cano(posX, deslocX) {
   /* CIMA */
   this.x = posX + deslocX;
   this.y = 0;
-  this.largura = 35;
-  this.altura = Math.floor(Math.random() * 210);
+  this.largura = 50;
+  this.altura = Math.floor(Math.random() * 215);
   this.deslocX = deslocX;
   /* BAIXO */
   this.yB = this.altura + 85;
@@ -157,10 +162,22 @@ function Cano(posX, deslocX) {
       if (this.x < 0 - this.largura) {
         bird.score++;
         this.x = cnv.width;
-        this.altura = Math.floor(Math.random() * 210);
+        this.altura = Math.floor(Math.random() * 215);
         this.yB = this.altura + 85;
         this.alturaB = this.yB + cnv.height;
       }
     }
+  };
+
+  this.reset = () => {
+    this.frame = 0;
+    this.speed = 3;
+    this.x = cnv.width + this.deslocX;
+    this.y = 0;
+    this.altura = Math.floor(Math.random() * 215);
+    this.deslocX = deslocX;
+    /* BAIXO */
+    this.yB = this.altura + 85;
+    this.alturaB = this.yB + cnv.height;
   };
 }

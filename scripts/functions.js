@@ -22,6 +22,8 @@ function draw() {
 /* FUNÇÕES SECUNDÁRIAS */
 function reset() {
   bird.reset();
+  cano1.reset();
+  cano2.reset();
   media.pause();
   media.currentTime = 0;
   perdeu.pause();
